@@ -266,6 +266,7 @@ client.on("message", async function (msg) {
 });
 
 client.on('ready', () => {
+	client.user.setActivity('discord.gg/m4DETpH4hp | github.com/anti-releases/audio-bot')
 	console.log(`Logged in as ${client.user.tag}!`)
 });
 
