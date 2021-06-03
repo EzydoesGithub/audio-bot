@@ -14,12 +14,12 @@ function MKV_Method(msg) {
                     if(process.platform === 'linux') {
                         var Bait = `Bypass/mkvBaits/${Baits[Math.floor(Math.random() * Baits.length)]}`
                         var [A, B, output] = [`Bypass/Workspace/A_${rnum}.mp3`, `Bypass/Workspace/B_${rnum}.mp3`, `Bypass/Results/${Bait.replace('Bypass/mkvBaits/', '').replace('.mp3', '')}_${rnum}.mp3`]
-                        var concat = `cat ${Bait} ${B} > ${output}`
+                        var concat = `cat "${Bait}" "${B}" > "${output}"`
                         var DeleteFiles = `rm -rf "${A}" "${B}" "${output}"`
                     } else if(process.platform === 'win32') {
                         var Bait = `Bypass\\mkvBaits\\${Baits[Math.floor(Math.random() * Baits.length)]}`
                         var [A, B, output] = [`Bypass\\Workspace\\A_${rnum}.mp3`, `Bypass\\Workspace\\B_${rnum}.mp3`, `Bypass\\Results\\${Bait.replace('Bypass\\mkvBaits\\', '').replace('.mp3', '')}_${rnum}.mp3`]
-                        var concat = `copy /b ${Bait} + ${B} ${output}`
+                        var concat = `copy /b "${Bait}" + "${B}" "${output}"`
                         var DeleteFiles = `Del "${A}" "${B}" "${output}"`
                     }
 
@@ -64,7 +64,7 @@ function WEBM_Method(msg) {
                     if(process.platform === 'linux') {
                         var Bait = `Bypass/webmBaits/${Baits[Math.floor(Math.random() * Baits.length)]}`
                         var [Header, A, B, output] = [`Bypass/webmRequirement/Header.ogg`,`Bypass/Workspace/A_${rnum}.mp3`, `Bypass/Workspace/B_${rnum}.mp3`, `Bypass/Results/${Bait.replace('Bypass/webmBaits/', '').replace('.ogg', '')}_${rnum}.ogg`];
-                        var concat = `cat ${Bait} ${B} > ${output}`
+                        var concat = `cat "${Bait}" "${B}" > "${output}"`
                         var DeleteFiles = `rm -rf "${A}" "${B}" "${output}"`
                     } else if(process.platform === 'win32') {
                         var Bait = `Bypass\\webmBaits\\${Baits[Math.floor(Math.random() * Baits.length)]}`
