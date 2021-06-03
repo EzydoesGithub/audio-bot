@@ -1,7 +1,7 @@
 ### Features
 
-- Roblox audio method(s).
-- Roblox audio bait maker
+- Audio method(s).
+- Audio bait maker.
 - Audio compression.
 - Audio file information.
 - Ubuntu / Windows versions.

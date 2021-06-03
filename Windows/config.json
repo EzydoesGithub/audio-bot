@@ -1,9 +1,0 @@
-{
-    "Prefix": "!",
-    "Token": "",
-
-    "Options": {
-        "Channels": [],
-        "Timeout": 30000
-    }
-}
