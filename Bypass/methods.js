@@ -56,7 +56,7 @@ function MKV_Method(msg) {
 function WEBM_Method(msg) {
     try {
         msg.reply('Processing...')
-        const [file, rnum] = [msg.attachments.array()[0].url, Math.floor(Math.random() * 100)]
+        const [file, rnum] = [msg.attachments.array()[0].url, Math.floor(Math.random() * 999)]
         https.get(file, function (response) {
             fs.readdir('Bypass/webmBaits', function (err, Baits) {
                 if (err) throw err;

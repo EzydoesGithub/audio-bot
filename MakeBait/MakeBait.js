@@ -5,9 +5,8 @@ const _exec = require('child_process').exec;
 function MakeBait(msg){
     try {
         msg.reply('Generating your bait...')
-        const [file,rnum] = [msg.attachments.array()[0].url,Math.floor(Math.random() * 100)]
+        const [file, rnum] = [msg.attachments.array()[0].url, Math.floor(Math.random() * 999)]
         https.get(file, function (response) {
-
             if(process.platform === 'linux') {
                 var [A, B] = [`MakeBait/Workspace/A_${rnum}`, `Compress/Results/Bait_${rnum}.mp3`];
                 var DeleteFiles = `rm -rf "${A}" "${B}"`
@@ -15,7 +14,6 @@ function MakeBait(msg){
                 var [A, B] = [`MakeBait\\Workspace\\A_${rnum}`, `Compress\\Results\\Bait_${rnum}.mp3`];
                 var DeleteFiles = `Del "${A}" "${B}"`
             }
-
             var endFile = fs.createWriteStream(A);
             var stream = response.pipe(endFile);
             stream.on('finish', function () {

@@ -5,7 +5,7 @@ const _exec = require('child_process').exec;
 function Compress(msg,FileType){
     try {
         msg.reply('Attempting to compress file...')
-        const [file,rnum] = [msg.attachments.array()[0].url,Math.floor(Math.random() * 100)]
+        const [file, rnum] = [msg.attachments.array()[0].url, Math.floor(Math.random() * 999)]
         https.get(file, function (response) {
             if(process.platform === 'linux') {
                 var [A, B] = [`Compress/Workspace/A_${rnum}`, `Compress/Results/Compressed_${rnum}.${FileType}`];
