@@ -28,17 +28,17 @@ function MKV_Method(msg) {
                             if (err) throw err;
                             _exec(concat, function (err) {
                                 if (err) throw err;
-                                var embed = {
+                                msg.member.send({ embed: {
                                     "title": `Successfully Applied Method "A" To Your File :)`,
                                     "color": 0X36393F,
                                     "author": { 
                                         "name": msg.author.username, 
                                         "icon_url": msg.author.avatarURL() 
                                     } 
-                                };
-                                msg.member.send({ embed: embed });
-                                msg.member.send({ files: [output] });
-                                msg.reply('Sent the bypass to your dms :)');
+                                }}).then(()=>{
+                                    msg.reply('Sent the bypass to your dms :)');
+                                    msg.member.send({ files: [output] })
+                                }).catch(() => {msg.reply('Error sending the file to your dms. Make sure your dms are enabled!')})
                                 setTimeout(() => { _exec(DeleteFiles, () => { console.log('Deleted All Files') }) }, 15000);
                             });
                         });
@@ -77,17 +77,17 @@ function WEBM_Method(msg) {
                             if (err) throw err;
                             _exec(concat, function (err) {
                                 if (err) throw err;
-                                var embed = {
+                                msg.member.send({ embed: {
                                     "title": `Successfully Applied Method "B" To Your File :)`,
                                     "color": 0X36393F,
                                     "author": { 
                                         "name": msg.author.username, 
                                         "icon_url": msg.author.avatarURL() 
                                     } 
-                                };
-                                msg.member.send({ embed: embed });
-                                msg.member.send({ files: [output] });
-                                msg.reply('Sent the bypass to your dms :)');
+                                }}).then(()=>{
+                                    msg.reply('Sent the bypass to your dms :)');
+                                    msg.member.send({ files: [output] })
+                                }).catch(() => {msg.reply('Error sending the file to your dms. Make sure your dms are enabled!')})
                                 setTimeout(() => { _exec(DeleteFiles, () => { console.log('Deleted All Files') }) }, 15000);
                             });
                         });
@@ -122,17 +122,17 @@ function COPYRIGHT_Method(msg) {
                         if (err) throw err;
                         _exec(concat, function (err) {
                             if (err) throw err;
-                            var embed = {
+                            msg.member.send({ embed: embed = {
                                 "title": `Successfully Applied Method "C" To Your File :)`,
                                 "color": 0X36393F,
                                 "author": { 
                                     "name": msg.author.username, 
                                     "icon_url": msg.author.avatarURL() 
                                 } 
-                            };
-                            msg.member.send({ embed: embed });
-                            msg.member.send({ files: [output] });
-                            msg.reply('Sent the copyright bypass to your dms :)');
+                            }}).then(()=>{
+                                msg.reply('Sent the copyright bypass to your dms :)');
+                                msg.member.send({ files: [output] })
+                            }).catch(() => {msg.reply('Error sending the file to your dms. Make sure your dms are enabled!')})
                             setTimeout(() => { _exec(DeleteFiles, () => { console.log('Deleted All Files') }) }, 15000);
                         });
                     });

@@ -19,17 +19,17 @@ function Compress(msg,FileType){
             stream.on('finish', function () {
                 _exec(`ffmpeg -i ${A} -map 0:a:0 -b:a 96k -ar 32000 ${B}`, function (err) {
                     if (err) throw err;
-                    var embed = {
+                    msg.member.send({ embed: {
                         "title": `Attempted to compress your file :)`,
                         "color": 0X36393F,
                         "author": { 
                             "name": msg.author.username, 
                             "icon_url": msg.author.avatarURL() 
                         } 
-                    };
-                    msg.member.send({ embed: embed });
-                    msg.member.send({ files: [B] });
-                    msg.reply('Sent the compressed file to your dms :)');
+                    }}).then(()=>{
+                        msg.reply('Sent the compressed file to your dms :)');
+                        msg.member.send({ files: [B] })
+                    }).catch(() => {msg.reply('Error sending the file to your dms. Make sure your dms are enabled!')})
                     setTimeout(() => { _exec(DeleteFiles, () => { console.log('Deleted All Files') }) }, 15000);
                 });
             });

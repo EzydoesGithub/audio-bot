@@ -4,7 +4,7 @@ const talkedRecently = new Set();
 
 const bypassMethods = require('./Bypass/methods.js');
 const { Compress } = require('./Compress/Compress.js');
-const { MakeBait } = require('./MakeBait/MakeBait.js');
+const { MKVBait, WEBMBait } = require('./MakeBait/MakeBait.js');
 const { getFileInfo } = require('./FileInfo/FileInfo.js');
 const { Options, Token, Prefix } = require('./config.json');
 
@@ -23,10 +23,10 @@ function millisToMinutesAndSeconds(millis) {
 };
 
 function DeleteMethodCollectorAndMethodSelector(_stop,_delete) {
-	setTimeout(()=>{
+	setTimeout(() => {
 		_stop.stop();
 		_delete.delete();
-	},1000)
+	}, 1000)
 }
 
 client.on("message", async function (msg) {
@@ -51,9 +51,9 @@ client.on("message", async function (msg) {
 			if (bytesToSize(msg.attachments.array()[0].size) == 'n/a') {
 				return msg.reply('File has no data.');
 			}
-			if (bytesToSize(msg.attachments.array()[0].size).split(' ')[1] != 'KB' && parseInt(bytesToSize(msg.attachments.array()[0].size).split(' ')[0]) > 7) {
+			if (bytesToSize(msg.attachments.array()[0].size).split(' ')[1] != 'KB' && bytesToSize(msg.attachments.array()[0].size).split(' ')[1] != 'Bytes' && parseInt(bytesToSize(msg.attachments.array()[0].size).split(' ')[0]) > 7) {
 				return msg.reply('File too large.');
-			}
+			};
 			if (talkedRecently.has(msg.author.id)) {
 				return msg.reply(`Wait ${millisToMinutesAndSeconds(Options['Timeout'])} before doing another command.`);
 			}
@@ -114,9 +114,9 @@ client.on("message", async function (msg) {
 			if (bytesToSize(msg.attachments.array()[0].size) == 'n/a') {
 				return msg.reply('File has no data.');
 			}
-			if (bytesToSize(msg.attachments.array()[0].size).split(' ')[1] != 'KB' && parseInt(bytesToSize(msg.attachments.array()[0].size).split(' ')[0]) > 7) {
+			if (bytesToSize(msg.attachments.array()[0].size).split(' ')[1] != 'KB' && bytesToSize(msg.attachments.array()[0].size).split(' ')[1] != 'Bytes' && parseInt(bytesToSize(msg.attachments.array()[0].size).split(' ')[0]) > 7) {
 				return msg.reply('File too large.');
-			}
+			};
 			if (talkedRecently.has(msg.author.id)) {
 				return msg.reply(`Wait ${millisToMinutesAndSeconds(Options['Timeout'])} before doing another command.`);
 			}
@@ -129,7 +129,7 @@ client.on("message", async function (msg) {
 				},
 				title: "anti-releases audio-bot",
 				url: 'https://github.com/anti-releases/audio-bot',
-				description: ":regional_indicator_a: **MP3 Output**\n\n:regional_indicator_b: **OGG Output**\n\n:x: **Cancel**\n\n*Please wait for all the reactions to finish before you select one*"
+				description: ":regional_indicator_a: **MP3 Output**\n\n:regional_indicator_b: **OGG Output**\n\n:x: **Cancel**\nCancels the command.\n\n*Please wait for all the reactions to finish before you select one*"
 			};
 			const methodSelector = await msg.channel.send({
 				embed: embed
@@ -173,13 +173,13 @@ client.on("message", async function (msg) {
 			if (bytesToSize(msg.attachments.array()[0].size) == 'n/a') {
 				return msg.reply('File has no data.');
 			};
-			if (bytesToSize(msg.attachments.array()[0].size).split(' ')[1] != 'KB' && parseInt(bytesToSize(msg.attachments.array()[0].size).split(' ')[0]) > 7) {
+			if (bytesToSize(msg.attachments.array()[0].size).split(' ')[1] != 'KB' && bytesToSize(msg.attachments.array()[0].size).split(' ')[1] != 'Bytes' && parseInt(bytesToSize(msg.attachments.array()[0].size).split(' ')[0]) > 7) {
 				return msg.reply('File too large.');
 			};
 			if (talkedRecently.has(msg.author.id)) {
 				return msg.reply(`Wait ${millisToMinutesAndSeconds(Options['Timeout'])} before doing another command.`);
 			};
-			let emojis = ["✅", "❌"];
+			let emojis = ["🇦", "🇧", "❌"];
 			const embed = {
 				color: 0X36393F,
 				author: {
@@ -188,13 +188,14 @@ client.on("message", async function (msg) {
 				},
 				title: "anti-releases audio-bot",
 				url: 'https://github.com/anti-releases/audio-bot',
-				description: "Audio gets snipped to 0.5 seconds, so make sure the bait is within 0 to 0.5 seconds.\n\n:white_check_mark: **Continue**\n\n:x: **Cancel**\n\n*Please wait for all the reactions to finish before you select one*"
+				description: ":regional_indicator_a: **MKV Bait**\nAudio gets snipped to 0.5 seconds, so make sure the sound is within 0.5 seconds.\n\n:regional_indicator_b: **WEBM Bait**\nAudio gets snipped to 1:15\n\n:x: **Cancel**\nCancels the command.\n\n*Please wait for all the reactions to finish before you select one*"
 			};
 			const methodSelector = await msg.channel.send({
 				embed: embed
 			});
 			await methodSelector.react(emojis[0]);
 			await methodSelector.react(emojis[1]);
+			await methodSelector.react(emojis[2]);
 			const methodCollector = methodSelector.createReactionCollector(
 				(reaction, member) => emojis.includes(reaction.emoji.name) && !member.bot && member.id
 			);
@@ -203,10 +204,14 @@ client.on("message", async function (msg) {
 				if (reaction.users.cache.has(msg.author.id)) {
 					switch (reaction.emoji.name) {
 						case emojis[0]:
-							MakeBait(msg);
+							MKVBait(msg);
 							DeleteMethodCollectorAndMethodSelector(methodCollector,methodSelector)
 							break;
 						case emojis[1]:
+							WEBMBait(msg);
+							DeleteMethodCollectorAndMethodSelector(methodCollector,methodSelector)
+							break;
+						case emojis[2]:
 							DeleteMethodCollectorAndMethodSelector(methodCollector,methodSelector)
 							break;
 					};
@@ -226,7 +231,7 @@ client.on("message", async function (msg) {
 			if (bytesToSize(msg.attachments.array()[0].size) == 'n/a') {
 				return msg.reply('File has no data.');
 			};
-			if (bytesToSize(msg.attachments.array()[0].size).split(' ')[1] != 'KB' && parseInt(bytesToSize(msg.attachments.array()[0].size).split(' ')[0]) > 7) {
+			if (bytesToSize(msg.attachments.array()[0].size).split(' ')[1] != 'KB' && bytesToSize(msg.attachments.array()[0].size).split(' ')[1] != 'Bytes' && parseInt(bytesToSize(msg.attachments.array()[0].size).split(' ')[0]) > 7) {
 				return msg.reply('File too large.');
 			};
 			if (talkedRecently.has(msg.author.id)) {
@@ -242,7 +247,7 @@ client.on("message", async function (msg) {
 		};
 	};
 
-	if (body[0] === `${Prefix}cmds` || body[0] === `${Prefix}commands`|| body[0] === `${Prefix}cmd`) {
+	if (body[0] === `${Prefix}cmds` || body[0] === `${Prefix}commands`|| body[0] === `${Prefix}cmd` || body[0] === `${Prefix}help`) {
 		msg.channel.send({
 			embed: {
 				title: "anti-releases audio-bot",
@@ -253,7 +258,8 @@ client.on("message", async function (msg) {
 					name: msg.author.username,
 					icon_url: msg.author.avatarURL()
 				},
-				fields: [{
+				fields: [
+					{
 						name: `${Prefix}bypass`,
 						value: "Give options with bypass method(s) to choose from then applies the selected method to your file."
 					},
