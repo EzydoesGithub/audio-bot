@@ -57,7 +57,7 @@ client.on("message", async function (msg) {
 			if (talkedRecently.has(msg.author.id)) {
 				return msg.reply(`Wait ${millisToMinutesAndSeconds(Options['Timeout'])} before doing another command.`);
 			}
-			let emojis = ["🇦", "🇧", "🇨", "❌"];
+			let emojis = ["🇦", "❌"];
 			const embed = {
 				color: 0X36393F,
 				author: {
@@ -66,15 +66,13 @@ client.on("message", async function (msg) {
 				},
 				title: 'anti-releases audio-bot',
 				url: 'https://github.com/anti-releases/audio-bot',
-				description: ":regional_indicator_a: **MKV Method**\nCopyright: Yes\nCurse words: Yes\nCheap: ~\n\n:regional_indicator_b: **WEBM Method**\nCopyright: No\nCurse words: Yes\nCheap: ~\n\n:regional_indicator_c: **Copyright Method**\nCopyright: Yes\nCurse Words: No\nCheap: Yes\n\n:x: **Cancel**\nCancels the command.\n\n*Please wait for all the reactions to finish before you select one*"
+				description: ":regional_indicator_a: **Copyright Method**\nCopyright: Yes\nCurse Words: No\nCheap: Yes\n\n:x: **Cancel**\nCancels the command.\n\n*Please wait for all the reactions to finish before you select one*"
 			};
 			const methodSelector = await msg.channel.send({
 				embed: embed
 			});
 			await methodSelector.react(emojis[0]);
 			await methodSelector.react(emojis[1]);
-			await methodSelector.react(emojis[2]);
-			await methodSelector.react(emojis[3]);
 			const methodCollector = methodSelector.createReactionCollector(
 				(reaction, member) => emojis.includes(reaction.emoji.name) && !member.bot && member.id
 			)
@@ -83,18 +81,10 @@ client.on("message", async function (msg) {
 				if (reaction.users.cache.has(msg.author.id)) {
 					switch (reaction.emoji.name) {
 						case emojis[0]:
-							bypassMethods.MKV_Method(msg);
-							DeleteMethodCollectorAndMethodSelector(methodCollector,methodSelector)
-							break;
-						case emojis[1]:
-							bypassMethods.WEBM_Method(msg);
-							DeleteMethodCollectorAndMethodSelector(methodCollector,methodSelector)
-							break;
-						case emojis[2]:
 							bypassMethods.COPYRIGHT_Method(msg);
 							DeleteMethodCollectorAndMethodSelector(methodCollector,methodSelector)
 							break;
-						case emojis[3]:
+						case emojis[1]:
 							DeleteMethodCollectorAndMethodSelector(methodCollector,methodSelector)
 							break;
 					};
