@@ -57,7 +57,7 @@ client.on("message", async function (msg) {
 			if (talkedRecently.has(msg.author.id)) {
 				return msg.reply(`Wait ${millisToMinutesAndSeconds(Options['Timeout'])} before doing another command.`);
 			}
-			let emojis = ["🇦", "❌"];
+			//let emojis = ["🇦", "❌"];
 			const embed = {
 				color: 0X36393F,
 				author: {
@@ -66,11 +66,12 @@ client.on("message", async function (msg) {
 				},
 				title: 'anti-releases audio-bot',
 				url: 'https://github.com/anti-releases/audio-bot',
-				description: ":regional_indicator_a: **Copyright Method**\nCopyright: Yes\nCurse Words: No\nCheap: Yes\n\n:x: **Cancel**\nCancels the command.\n\n*Please wait for all the reactions to finish before you select one*"
+				description: "All methods included in the bot (as of 6/15/2021) has been patched by Roblox."
 			};
 			const methodSelector = await msg.channel.send({
 				embed: embed
 			});
+			/*
 			await methodSelector.react(emojis[0]);
 			await methodSelector.react(emojis[1]);
 			const methodCollector = methodSelector.createReactionCollector(
@@ -90,6 +91,7 @@ client.on("message", async function (msg) {
 					};
 				}
 			});
+			*/
 			talkedRecently.add(msg.author.id);
 			setTimeout(() => {
 				talkedRecently.delete(msg.author.id);
@@ -169,7 +171,7 @@ client.on("message", async function (msg) {
 			if (talkedRecently.has(msg.author.id)) {
 				return msg.reply(`Wait ${millisToMinutesAndSeconds(Options['Timeout'])} before doing another command.`);
 			};
-			let emojis = ["🇦", "🇧", "❌"];
+			//let emojis = ["🇦", "🇧", "❌"];
 			const embed = {
 				color: 0X36393F,
 				author: {
@@ -178,12 +180,12 @@ client.on("message", async function (msg) {
 				},
 				title: "anti-releases audio-bot",
 				url: 'https://github.com/anti-releases/audio-bot',
-				description: ":regional_indicator_a: **MKV Bait**\nAudio gets snipped to 0.5 seconds, so make sure the sound is within 0.5 seconds.\n\n:regional_indicator_b: **WEBM Bait**\nAudio gets snipped to 1:15\n\n:x: **Cancel**\nCancels the command.\n\n*Please wait for all the reactions to finish before you select one*"
+				description: "All methods included in the bot (as of 6/15/2021) has been patched by Roblox, so there is no need to make bait files for them anymore."			
 			};
 			const methodSelector = await msg.channel.send({
 				embed: embed
 			});
-			await methodSelector.react(emojis[0]);
+			/*await methodSelector.react(emojis[0]);
 			await methodSelector.react(emojis[1]);
 			await methodSelector.react(emojis[2]);
 			const methodCollector = methodSelector.createReactionCollector(
@@ -207,6 +209,7 @@ client.on("message", async function (msg) {
 					};
 				};
 			});
+			*/
 			talkedRecently.add(msg.author.id);
 			setTimeout(() => {
 				talkedRecently.delete(msg.author.id);
