@@ -57,7 +57,7 @@ client.on("message", async function (msg) {
 			if (talkedRecently.has(msg.author.id)) {
 				return msg.reply(`Wait ${millisToMinutesAndSeconds(Options['Timeout'])} before doing another command.`);
 			}
-			//let emojis = ["🇦", "❌"];
+			let emojis = ["🇦", "🇧", "🇨", "❌"];
 			const embed = {
 				color: 0X36393F,
 				author: {
@@ -66,14 +66,15 @@ client.on("message", async function (msg) {
 				},
 				title: 'anti-releases audio-bot',
 				url: 'https://github.com/anti-releases/audio-bot',
-				description: "All methods included in the bot (as of 6/15/2021) has been patched by Roblox."
+				description: ":regional_indicator_a: **MKV Method**\nCopyright: Yes\nCurse words: Yes\nCheap: ~\n\n:regional_indicator_b: **WEBM Method**\nCopyright: No\nCurse words: Yes\nCheap: ~\n\n:regional_indicator_c: **Copyright Method**\nCopyright: Yes\nCurse Words: No\nCheap: Yes\n\n:x: **Cancel**\nCancels the command.\n\n*Please wait for all the reactions to finish before you select one*"
 			};
 			const methodSelector = await msg.channel.send({
 				embed: embed
 			});
-			/*
 			await methodSelector.react(emojis[0]);
 			await methodSelector.react(emojis[1]);
+			await methodSelector.react(emojis[2]);
+			await methodSelector.react(emojis[3]);
 			const methodCollector = methodSelector.createReactionCollector(
 				(reaction, member) => emojis.includes(reaction.emoji.name) && !member.bot && member.id
 			)
@@ -82,16 +83,23 @@ client.on("message", async function (msg) {
 				if (reaction.users.cache.has(msg.author.id)) {
 					switch (reaction.emoji.name) {
 						case emojis[0]:
-							bypassMethods.COPYRIGHT_Method(msg);
+							bypassMethods.MKV_Method(msg);
 							DeleteMethodCollectorAndMethodSelector(methodCollector,methodSelector)
 							break;
 						case emojis[1]:
+							bypassMethods.WEBM_Method(msg);
+							DeleteMethodCollectorAndMethodSelector(methodCollector,methodSelector)
+							break;
+						case emojis[2]:
+							bypassMethods.COPYRIGHT_Method(msg);
+							DeleteMethodCollectorAndMethodSelector(methodCollector,methodSelector)
+							break;
+						case emojis[3]:
 							DeleteMethodCollectorAndMethodSelector(methodCollector,methodSelector)
 							break;
 					};
 				}
 			});
-			*/
 			talkedRecently.add(msg.author.id);
 			setTimeout(() => {
 				talkedRecently.delete(msg.author.id);
@@ -171,7 +179,7 @@ client.on("message", async function (msg) {
 			if (talkedRecently.has(msg.author.id)) {
 				return msg.reply(`Wait ${millisToMinutesAndSeconds(Options['Timeout'])} before doing another command.`);
 			};
-			//let emojis = ["🇦", "🇧", "❌"];
+			let emojis = ["🇦", "🇧", "❌"];
 			const embed = {
 				color: 0X36393F,
 				author: {
@@ -180,12 +188,12 @@ client.on("message", async function (msg) {
 				},
 				title: "anti-releases audio-bot",
 				url: 'https://github.com/anti-releases/audio-bot',
-				description: "All methods included in the bot (as of 6/15/2021) has been patched by Roblox, so there is no need to make bait files for them anymore."			
+				description: ":regional_indicator_a: **MKV Bait**\nAudio gets snipped to 0.5 seconds, so make sure the sound is within 0.5 seconds.\n\n:regional_indicator_b: **WEBM Bait**\nAudio gets snipped to 1:15\n\n:x: **Cancel**\nCancels the command.\n\n*Please wait for all the reactions to finish before you select one*"
 			};
 			const methodSelector = await msg.channel.send({
 				embed: embed
 			});
-			/*await methodSelector.react(emojis[0]);
+			await methodSelector.react(emojis[0]);
 			await methodSelector.react(emojis[1]);
 			await methodSelector.react(emojis[2]);
 			const methodCollector = methodSelector.createReactionCollector(
@@ -209,7 +217,6 @@ client.on("message", async function (msg) {
 					};
 				};
 			});
-			*/
 			talkedRecently.add(msg.author.id);
 			setTimeout(() => {
 				talkedRecently.delete(msg.author.id);
