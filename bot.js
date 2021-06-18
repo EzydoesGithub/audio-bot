@@ -64,8 +64,8 @@ client.on("message", async function (msg) {
 					name: msg.author.username,
 					icon_url: msg.author.avatarURL()
 				},
-				title: 'anti-releases audio-bot',
-				url: 'https://github.com/anti-releases/audio-bot',
+				title: 'Moo Gang | Audio Bot!',
+				url: 'https://www.youtube.com/watch?v=Q4ea3rDuDzU',
 				description: ":regional_indicator_a: **MKV Method**\nCopyright: Yes\nCurse words: Yes\nCheap: ~\n\n:regional_indicator_b: **WEBM Method**\nCopyright: No\nCurse words: Yes\nCheap: ~\n\n:regional_indicator_c: **Copyright Method**\nCopyright: Yes\nCurse Words: No\nCheap: Yes\n\n:x: **Cancel**\nCancels the command.\n\n*Please wait for all the reactions to finish before you select one*"
 			};
 			const methodSelector = await msg.channel.send({
@@ -127,8 +127,8 @@ client.on("message", async function (msg) {
 					name: msg.author.username,
 					icon_url: msg.author.avatarURL()
 				},
-				title: "anti-releases audio-bot",
-				url: 'https://github.com/anti-releases/audio-bot',
+				title: "Moo Gang | Audio Bot!",
+				url: 'https://www.youtube.com/watch?v=Q4ea3rDuDzU',
 				description: ":regional_indicator_a: **MP3 Output**\n\n:regional_indicator_b: **OGG Output**\n\n:x: **Cancel**\nCancels the command.\n\n*Please wait for all the reactions to finish before you select one*"
 			};
 			const methodSelector = await msg.channel.send({
@@ -186,8 +186,8 @@ client.on("message", async function (msg) {
 					name: msg.author.username,
 					icon_url: msg.author.avatarURL()
 				},
-				title: "anti-releases audio-bot",
-				url: 'https://github.com/anti-releases/audio-bot',
+				title: "Moo Gang | Audio Bot!",
+				url: 'https://www.youtube.com/watch?v=Q4ea3rDuDzU',
 				description: ":regional_indicator_a: **MKV Bait**\nAudio gets snipped to 0.5 seconds, so make sure the sound is within 0.5 seconds.\n\n:regional_indicator_b: **WEBM Bait**\nAudio gets snipped to 1:15\n\n:x: **Cancel**\nCancels the command.\n\n*Please wait for all the reactions to finish before you select one*"
 			};
 			const methodSelector = await msg.channel.send({
@@ -250,9 +250,9 @@ client.on("message", async function (msg) {
 	if (body[0] === `${Prefix}cmds` || body[0] === `${Prefix}commands`|| body[0] === `${Prefix}cmd` || body[0] === `${Prefix}help`) {
 		msg.channel.send({
 			embed: {
-				title: "anti-releases audio-bot",
+				title: "Moo Gang | Audio Bot!",
 				description: "Command list",
-				url: "https://github.com/anti-releases/audio-bot",
+				url: "https://www.youtube.com/watch?v=Q4ea3rDuDzU",
 				color: 0X36393F,
 				author: {
 					name: msg.author.username,
@@ -283,7 +283,7 @@ client.on("message", async function (msg) {
 });
 
 client.on('ready', () => {
-	client.user.setActivity('discord.gg/m4DETpH4hp | github.com/anti-releases/audio-bot')
+	client.user.setActivity('.gg/SREv5eKkFn | Moo Gang')
 	console.log(`Logged in as ${client.user.tag}!`)
 });
 
